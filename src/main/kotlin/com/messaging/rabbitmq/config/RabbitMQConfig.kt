@@ -21,22 +21,12 @@ class RabbitMQConfig {
     }
 
     @Bean
-    fun testBinding() : Binding{
-        return BindingBuilder
-                .bind(testQueue())
-                .to(directExchange())
-                .with("TEST-ROUTING-KEY")
-                .noargs()
-    }
-
-    @Bean
     fun directExchange() : Exchange{
         return ExchangeBuilder
                 .directExchange("DIRECT-EXCHANGE")
                 .durable(true)
                 .build()
     }
-
 
     @Bean
     fun userModelQueue() : Queue {
@@ -45,12 +35,6 @@ class RabbitMQConfig {
                 .build()
     }
 
-    @Bean
-    fun testQueue() : Queue {
-        return QueueBuilder
-                .durable("TEST-QUEUE")
-                .build()
-    }
 
     @Bean
     fun messageConverter(objectMapper: ObjectMapper) : MessageConverter{
